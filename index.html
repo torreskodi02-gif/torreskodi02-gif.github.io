@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Cody’s Apps</title><meta name="description" content="Android apps by Cody, free to download.">
+<style>
+:root{--bg:#EEF1F5;--ink:#0D1B2A;--mute:#4B5B6C;--line:#D3DAE3}
+@media (prefers-color-scheme:dark){:root{--bg:#0B1420;--ink:#EAF0F7;--mute:#9AABBD;--line:#22303F}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,sans-serif;padding:max(28px,env(safe-area-inset-top)) 22px max(48px,env(safe-area-inset-bottom))}
+main{max-width:36rem;margin:0 auto}
+h1{font:700 clamp(2.8rem,13vw,4.6rem)/.96 Georgia,"Iowan Old Style",serif;letter-spacing:-.025em;margin:.5em 0 .3em}
+.lead{color:var(--mute);font-size:1.05rem;margin:0 0 1.6em}
+.app{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:1.4rem 0;border-top:2px solid var(--line)}
+.badge{width:3.4rem;height:3.4rem;border-radius:15px;background:linear-gradient(135deg,var(--c),var(--c2));color:var(--on);font:700 1.7rem Georgia,serif;display:grid;place-items:center}
+h2{font:700 1.3rem system-ui;margin:0 0 .2em}
+p{margin:.3em 0;color:var(--mute)}.note{font-size:.92rem}
+.btn{display:inline-block;margin:.7em 0 .2em;background:var(--c);color:var(--on);text-decoration:none;font-weight:700;padding:.85em 1.4em;border-radius:999px}
+.btn[aria-disabled=true]{opacity:.4;pointer-events:none}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.meta{font-size:.9rem}.share{font-size:.82rem}code{word-break:break-all}
+h3{font:700 1.05rem system-ui;margin:2em 0 .4em;border-top:2px solid var(--line);padding-top:1.2em}
+ul{padding-left:1.1em;margin:0;color:var(--mute)}li{margin:.35em 0}
+</style></head><body><main>
+<h1>Cody’s Apps</h1>
+<p class="lead">Android apps I build, free to download. Each app has its own download button and share link.</p>
+<section class="app" style="--c:#F5A524;--c2:#4ADE80;--on:#1B1300" data-repo="torreskodi02-gif/voltforge" data-asset="voltforge.apk">
+<div class="badge" aria-hidden="true">V</div>
+<div><h2>VoltForge</h2><p>Battery control for Android, no root needed. Health meter, time-left estimates, and one-tap optimizing with a live terminal view.</p><p class="note">Made for Android 6 to 10. Some features need permissions you grant in Settings.</p>
+<a class="btn" href="get/voltforge/">Download VoltForge</a>
+<p class="meta">Checking the latest build…</p><p class="share">Share link: <code>torreskodi02-gif.github.io/get/voltforge</code></p></div></section>
+<section class="app" style="--c:#3B30F0;--c2:#8F88FF;--on:#FFFFFF" data-repo="torreskodi02-gif/quantum-signal" data-asset="quantumsignal.apk">
+<div class="badge" aria-hidden="true">Q</div>
+<div><h2>Quantum Signal</h2><p>A private messenger in development, with a panic button that wipes everything.</p><p class="note">Early build: PIN lock, themes and the panic button work. Messaging is still being built.</p>
+<a class="btn" href="get/quantum-signal/">Download Quantum Signal</a>
+<p class="meta">Checking the latest build…</p><p class="share">Share link: <code>torreskodi02-gif.github.io/get/quantum-signal</code></p></div></section>
+<h3>How to install</h3>
+<ul><li>Tap an app’s Download button, then open the file</li><li>Allow installs from your browser when Android asks</li><li>Your phone may warn that the app comes from outside the Play Store. Only install apps you trust</li><li>After the first install, updates arrive inside each app</li></ul>
+</main>
+<script>
+document.querySelectorAll('.app').forEach(function(el){
+var m=el.querySelector('.meta'),b=el.querySelector('.btn');
+fetch('https://api.github.com/repos/'+el.dataset.repo+'/releases/latest').then(function(r){return r.ok?r.json():Promise.reject()}).then(function(j){
+var a=(j.assets||[]).find(function(x){return x.name===el.dataset.asset});if(!a)throw 0;
+m.textContent='Latest build '+j.tag_name+' · '+(a.size/1048576).toFixed(1)+' MB · '+new Date(a.updated_at).toLocaleDateString()
+}).catch(function(){m.textContent='Not released yet. Check back soon.';b.setAttribute('aria-disabled','true')})})
+</script></body></html>

@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Download VoltForge</title>
+<style>body{font:17px/1.55 system-ui,sans-serif;margin:0;padding:48px 22px;background:#EEF1F5;color:#0D1B2A}main{max-width:30rem;margin:0 auto}a{color:#3B30F0}</style></head><body><main>
+<h1 style="font-family:Georgia,serif">VoltForge</h1><p id="s">Finding the latest build…</p>
+<p><a href="https://github.com/torreskodi02-gif/voltforge/releases/latest/download/voltforge.apk">Download manually</a> · <a href="../../">All apps</a></p></main>
+<script>
+fetch('https://api.github.com/repos/torreskodi02-gif/voltforge/releases/latest').then(function(r){return r.ok?r.json():Promise.reject()}).then(function(j){
+var a=(j.assets||[]).find(function(x){return x.name==='voltforge.apk'});
+if(a){document.getElementById('s').textContent='Starting your download…';location.replace(a.browser_download_url)}
+else document.getElementById('s').textContent='This app has not been released yet. Check back soon.'
+}).catch(function(){location.replace('https://github.com/torreskodi02-gif/voltforge/releases/latest/download/voltforge.apk')});
+</script></body></html>
